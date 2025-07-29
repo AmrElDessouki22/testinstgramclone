@@ -5,18 +5,26 @@ import axios from 'axios';
 import { Post } from '@/components/features/Post';
 
 export const Feed = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState([
+    { id: 1, title: 'Dummy Post 1', content: 'This is a dummy post for testing.' },
+    { id: 2, title: 'Dummy Post 2', content: 'This is another dummy post for testing.' },
+    { id: 3, title: 'Dummy Post 3', content: 'Yet another dummy post for testing.' },
+  ]);
 
   useEffect(() => {
     axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`)
-      .then(response => setPosts(response.data))
+      .then(response => {
+        if (response.data.length > 0) {
+          setPosts(response.data);
+        }
+      })
       .catch(error => console.error('Error fetching posts:', error));
   }, []);
 
   return (
     <div>
       {posts.map(post => (
-        <Post key={post.id} post={post} showContent={true} />
+        <Post key={post.id} post={post} />
       ))}
     </div>
   );
