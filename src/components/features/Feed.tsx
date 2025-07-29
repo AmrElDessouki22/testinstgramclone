@@ -12,13 +12,18 @@ export const Feed = () => {
   ]);
 
   useEffect(() => {
-    axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts`)
-      .then(response => {
-        if (response.data.length > 0) {
-          setPosts(response.data);
-        }
-      })
-      .catch(error => console.error('Error fetching posts:', error));
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    if (apiUrl) {
+      axios.get(`${apiUrl}/posts`)
+        .then(response => {
+          if (response.data.length > 0) {
+            setPosts(response.data);
+          }
+        })
+        .catch(error => console.error('Error fetching posts:', error));
+    } else {
+      console.error('API URL is not defined in the environment variables.');
+    }
   }, []);
 
   return (
