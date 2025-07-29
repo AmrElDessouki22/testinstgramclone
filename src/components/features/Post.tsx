@@ -19,7 +19,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
         </div>
         <button className="text-blue-500">Like</button>
         <div className="mt-2">
-          {post.comments.map((comment, index) => (
+          {post.comments && post.comments.map((comment, index) => (
             <div key={index} className="border-t pt-2">
               <strong>{comment.user}:</strong> {comment.text}
             </div>
