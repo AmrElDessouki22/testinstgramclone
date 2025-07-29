@@ -1,3 +1,4 @@
+'use client'
 import { Feed } from '@/components/features/Feed';
 import { useEffect, useState } from 'react';
 
