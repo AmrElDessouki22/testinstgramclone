@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 interface PostProps {
   post: {
@@ -16,7 +17,7 @@ export const Post: React.FC<PostProps> = ({ post }) => {
     <div className="border rounded-md mb-4">
       <div className="p-4">
         <h3 className="font-bold">{post.user}</h3>
-        <img src={post.imageUrl} alt={post.caption} className="w-full" />
+        <Image src={post.imageUrl} alt={post.caption} width={500} height={300} objectFit="cover" />
         <p>{post.caption}</p>
         <div>
           <span>{post.likes} likes</span>
